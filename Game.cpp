@@ -68,7 +68,6 @@ void Game::InsertScore()
 
 	SortPlayers();
 }
-#include <iomanip>
 
 void Game::displayLeaderboard()
 {
