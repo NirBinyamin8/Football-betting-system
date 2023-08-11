@@ -1,5 +1,6 @@
 #include "player.h"
-Player::Player(string playerName, string Champ) :playerName(playerName), Champ(Champ)
+//constructor
+Player::Player(string& playerName, string& Champ) :playerName(playerName), Champ(Champ)
 {
 	
 	Number_of_points = 0;
@@ -7,9 +8,10 @@ Player::Player(string playerName, string Champ) :playerName(playerName), Champ(C
 	accurateResults = 0;
 	wrongBets = 0;
 }
-Player::Player(string playerName, int Number_of_points, string Champ, int betsOnWinningTeam, int accurateResults, int wrongBets) :playerName(playerName),
+Player::Player(string& playerName, int& Number_of_points, string& Champ, int& betsOnWinningTeam, int& accurateResults, int& wrongBets) :playerName(playerName),
 Number_of_points(Number_of_points), Champ(Champ), betsOnWinningTeam(betsOnWinningTeam), accurateResults(accurateResults), wrongBets(wrongBets) {
 }
+
 void Player::placeBets(vector<int>& home, vector<int>& away)
 {
 	int size = home.size();
@@ -99,6 +101,7 @@ void Player::CheckChamp(string& real)
 	if (real == this->Champ)
 		Number_of_points += 10;
 }
+
 //print
 void Player::print()
 {
@@ -132,6 +135,7 @@ const string Player::GetChamp() const
 	return this->Champ;
 }
 
+//operators
 ostream& operator<<(ostream& os, const Player& p)
 {
 	os << p.GetName() << " "

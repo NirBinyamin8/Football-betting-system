@@ -38,6 +38,7 @@ void Print_Menu(Game* game)
 
 	while (!exit)
 	{
+		cout << "*************************" << endl;
 		cout << "Press 1 for insert the results and bets" << endl;
 		cout << "Press 2 display the table" << endl;
 		cout << "Press 3 for insert the true champion team" << endl;
@@ -91,14 +92,10 @@ void main()
 	int chose;
 	Game* game;
 
-
 	cout << "Press 1 for new game" << endl << "Press 2 for reload game" << endl;
-
 	cin >> chose;
 	if (chose == 1)
-	{
 		game=Create_A_New_Game();
-	}
 	else
 		game=Reload_Game();
 

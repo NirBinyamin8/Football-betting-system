@@ -1,11 +1,11 @@
 #include "Game.h"
-Game::Game(vector<Player*> Arr_player, int Size,string Champion)
+//constructor
+Game::Game(vector<Player*>& Arr_player, int& Size,string &Champion)
 {
 	this->champion = Champion;
 	this->players =Arr_player ;
 	this->size = Size;
 }
-
 Game::Game(ifstream& in)
 {
 	string name;
@@ -30,6 +30,7 @@ Game::Game(ifstream& in)
 		players[i] = new Player(name, total, champ, betsonwinnig, accurate, wrong);
 	}
 }
+//distructor
 Game::~Game()
 {
 	for (int i = 0; i < size; i++)
@@ -40,6 +41,8 @@ Game::~Game()
 
 	
 }
+
+
 void Game::InsertScore()
 {
 	int games;
@@ -65,26 +68,27 @@ void Game::InsertScore()
 
 	SortPlayers();
 }
+#include <iomanip>
+
 void Game::displayLeaderboard()
 {
-	// Display table header
-	cout << "----------------------------------------" << endl;
-	cout << "Rank | Player Name     | Points | Bets  | Accurate | Wrong" << endl;
-	cout << "----------------------------------------" << endl;
+	cout << "-------------------------------------------------------------\n";
+	cout << "| Rank |       Name       |   Points  | Bets on Win Team | Accurate Results | Wrong Bets |\n";
+	cout << "-------------------------------------------------------------\n";
 
 	for (int i = 0; i < size; i++)
 	{
-		cout << setw(4) << i + 1 << " | "
-			<< setw(15) << left << players[i]->GetName() << " | "
-			<< setw(6) << right << players[i]->getNumberOfPoints() << " | "
-			<< setw(5) << right << players[i]->GetbetsOnWinningTeam() << " | "
-			<< setw(8) << right << players[i]->GetaccurateResults() << " | "
-			<< setw(5) << right << players[i]->GetwrongBets()
-			<< endl;
+		cout << "| " << setw(4) << i + 1 << " |";
+		cout << setw(17) << players[i]->GetName() << " |";
+		cout << setw(9) << players[i]->getNumberOfPoints() << " |";
+		cout << setw(17) << players[i]->GetbetsOnWinningTeam() << " |";
+		cout << setw(17) << players[i]->GetaccurateResults() << " |";
+		cout << setw(11) << players[i]->GetwrongBets() << " |";
+		cout << endl;
 	}
-
-	cout << "----------------------------------------" << endl;
+	cout << "-------------------------------------------------------------\n";
 }
+
 
 void Game::Insertchampion(string& champion1)
 {
@@ -95,6 +99,13 @@ void Game::Insertchampion(string& champion1)
 	}
 	SortPlayers();
 }
+void Game::SortPlayers() {
+	sort(players.begin(), players.end(), [](const Player* p1, const Player* p2) {
+		return p1->getNumberOfPoints() > p2->getNumberOfPoints();
+		});
+}
+
+//Save game to file
 void Game::Save_Game(string& file)
 {
 	ofstream outfile(file, ios::trunc);
@@ -106,8 +117,4 @@ void Game::Save_Game(string& file)
 	}
 	outfile.close();
 }
-void Game::SortPlayers() {
-	sort(players.begin(), players.end(), [](const Player* p1, const Player* p2) {
-		return p1->getNumberOfPoints() > p2->getNumberOfPoints();
-		});
-}
+

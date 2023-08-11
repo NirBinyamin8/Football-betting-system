@@ -17,7 +17,7 @@ private:
 
 
 public:
-	Game(vector<Player*> Arr_player, int Size, string Champion);
+	Game(vector<Player*>& Arr_player, int& Size, string &Champion);
 	Game(ifstream& in);
 	void displayLeaderboard();
 	void InsertScore();

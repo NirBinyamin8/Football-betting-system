@@ -13,8 +13,8 @@ private:
 	int accurateResults =0;
 	int wrongBets =0;
 public:
-	Player(string playerName, string Champ);
-	Player(string playerName, int Number_of_points, string Champ, int betsOnWinningTeam , int accurateResults, int wrongBets);
+	Player(string& playerName, string& Champ);
+	Player(string& playerName, int& Number_of_points, string& Champ, int& betsOnWinningTeam , int& accurateResults, int& wrongBets);
 	void placeBets(vector<int>& home, vector<int>& away);
 	void CheckChamp(string& real);
 	void print();
@@ -28,7 +28,7 @@ public:
 	
 
 	friend ostream& operator<<(ostream& os, const Player& p);
-
+	friend istream& operator>>(istream& is, Player& p);
 
 
 
