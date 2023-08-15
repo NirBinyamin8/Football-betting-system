@@ -71,22 +71,53 @@ void Game::InsertScore()
 
 void Game::displayLeaderboard()
 {
-	cout << "-------------------------------------------------------------\n";
-	cout << "| Rank |       Name       |   Points  | Bets on Win Team | Accurate Results | Wrong Bets |\n";
-	cout << "-------------------------------------------------------------\n";
+	cout << "-------------------------------------------------------" << endl;
+	cout << "| Rank |      Name      |  Points |  Wins  | BullEye's | Wrongs |" << endl;
+	cout << "-------------------------------------------------------" << endl;
 
 	for (int i = 0; i < size; i++)
 	{
 		cout << "| " << setw(4) << i + 1 << " |";
-		cout << setw(17) << players[i]->GetName() << " |";
-		cout << setw(9) << players[i]->getNumberOfPoints() << " |";
-		cout << setw(17) << players[i]->GetbetsOnWinningTeam() << " |";
-		cout << setw(17) << players[i]->GetaccurateResults() << " |";
-		cout << setw(11) << players[i]->GetwrongBets() << " |";
+		cout << setw(15) << players[i]->GetName() << " |";
+		cout << setw(7) << players[i]->getNumberOfPoints() << " |";
+		cout << setw(6) << players[i]->GetbetsOnWinningTeam() << " |";  // Assuming GetbetsOnWinningTeam now returns Wins
+		cout << setw(10) << players[i]->GetaccurateResults() << " |";  // Assuming GetaccurateResults now returns BullEye's
+		cout << setw(7) << players[i]->GetwrongBets() << " |";  // Assuming GetwrongBets now returns Wrongs
 		cout << endl;
 	}
-	cout << "-------------------------------------------------------------\n";
+	cout << "-------------------------------------------------------" << endl;
 }
+
+
+void Game::writeLeaderboardToFile()
+{
+	ofstream outFile("Res.txt");  // Open a file named "Res.txt" for writing.
+
+	if (!outFile)  // Check if the file opened successfully.
+	{
+		cerr << "Failed to open file for writing." << endl;
+		return;
+	}
+
+	outFile << "-------------------------------------------------------\n";
+	outFile << "| Rank |      Name      |  Points |  Wins  | BullEye's | Wrongs |\n";
+	outFile << "-------------------------------------------------------\n";
+
+	for (int i = 0; i < size; i++)
+	{
+		outFile << "| " << setw(4) << i + 1 << " |";
+		outFile << setw(15) << players[i]->GetName() << " |";
+		outFile << setw(7) << players[i]->getNumberOfPoints() << " |";
+		outFile << setw(6) << players[i]->GetbetsOnWinningTeam() << " |";
+		outFile << setw(10) << players[i]->GetaccurateResults() << " |";  // Assuming GetaccurateResults now returns BullEye's
+		outFile << setw(7) << players[i]->GetwrongBets() << " |";  // Assuming GetwrongBets now returns Wrongs
+		outFile << endl;
+	}
+	outFile << "-------------------------------------------------------\n";
+
+	outFile.close();  // Close the file after writing.
+}
+
 
 
 void Game::Insertchampion(string& champion1)

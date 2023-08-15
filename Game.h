@@ -20,6 +20,7 @@ public:
 	Game(vector<Player*>& Arr_player, int& Size, string &Champion);
 	Game(ifstream& in);
 	void displayLeaderboard();
+	void writeLeaderboardToFile();
 	void InsertScore();
 	void Insertchampion(string& champion1);
 	void Save_Game(string& file);
