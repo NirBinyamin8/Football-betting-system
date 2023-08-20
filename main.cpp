@@ -85,6 +85,7 @@ Game* Reload_Game()
 void Save(Game* game)
 {
 	game->Save_Game(file);
+	game->writeLeaderboardToFile();
 }
 
 void main()

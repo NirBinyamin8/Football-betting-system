@@ -1,2 +1,3 @@
-﻿  Game.cpp
-  Ligat Hal.vcxproj -> C:\Users\97252\Desktop\Ligat Hal\Ligat Hal\Debug\Ligat Hal.exe
+﻿  main.cpp
+C:\Users\97252\Desktop\Football-betting-system\main.cpp(92,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  Ligat Hal.vcxproj -> C:\Users\97252\Desktop\Football-betting-system\Debug\Ligat Hal.exe
